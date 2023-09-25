@@ -1,5 +1,6 @@
 //imports
 const mongoose = require('mongoose');
+const schedulePolls = require('./schedules/poll');
 require('dotenv').config();
 
 const app = require('./app');
@@ -23,6 +24,13 @@ const start = async() => {
     } catch (err) {
         console.log(err);
         throw new DatabaseConnectionError();
+    }
+
+    //Start poll schedules
+    try {
+        schedulePolls();
+    } catch (err) {
+        console.log(err)
     }
 
     //start app

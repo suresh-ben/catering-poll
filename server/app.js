@@ -8,6 +8,7 @@ require('express-async-errors');
 
 //import routes
 const auth = require('./routes/auth');
+const poll = require('./routes/poll');
 
 //inits
 const app = express();
@@ -22,10 +23,8 @@ app.use(cookieParser({
 }));
 
 //routes
-app.get('/', (req, res) => {
-    res.send("Hi mowa");
-});
 app.use(auth);
+app.use(poll);
 
 app.use(errorHandler);
 
