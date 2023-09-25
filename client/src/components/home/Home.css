@@ -1,0 +1,48 @@
+.home-body {
+    height: 100vh;
+    background-image: url('../../assets/images/home-background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: brightness(45%);
+}
+
+.home-main {
+    height: calc(100vh - 5rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 10rem;
+}
+
+.home-main div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.home-main-tag {
+    font-size: 5rem;
+    font-weight: bold;
+}
+
+.home-main-tag span {
+    color: #8fc82c;
+}
+
+.home-main button {
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #0F1822;
+    border: none;
+    color: #8fc82c;
+    font-size: large;
+    width: 50%;
+}
+
+.home-main button:hover {
+    background-color: #0D151D;
+    cursor: pointer;
+}
+
+.home-main img {}

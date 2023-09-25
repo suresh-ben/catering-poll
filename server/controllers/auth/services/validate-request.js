@@ -7,7 +7,6 @@ function isEmailValid(email) {
 
 
 const validateSignUp = (name, mail, password) => {
-    console.log('klhugliyu');
     const passwordLength = 8;
     const errors = [];
     if (!name) errors.push({ subject: 'name', message: 'Name should be provided!' });

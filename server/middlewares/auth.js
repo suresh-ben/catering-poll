@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const NotAuthorizedError = require('./errors/not-authorized-error');
 
 const auth = async(req, res, next) => {
@@ -6,10 +8,12 @@ const auth = async(req, res, next) => {
 
     try {
         jwt.verify(token, process.env.JWT_KEY);
-        return true;
     } catch (err) {
+        console.log(err)
         throw new NotAuthorizedError();
     }
 
     next();
 }
+
+module.exports = auth;

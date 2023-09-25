@@ -1,0 +1,15 @@
+.not-found-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found-head-tag {
+    margin: 1rem 0;
+    font-size: xx-large;
+}
+
+.not-found-head-tag span {
+    color: red;
+}

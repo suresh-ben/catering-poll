@@ -2,7 +2,7 @@ const CustomError = require('./custom-error');
 
 module.exports = class NotAuthorizedError extends CustomError {
     constructor(message) {
-        super(message || 'User login required');
+        super(message || 'User login require');
         this.statusCode = 400;
     }
 

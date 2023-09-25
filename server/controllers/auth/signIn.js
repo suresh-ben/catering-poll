@@ -21,7 +21,7 @@ const signIn = async(req, res) => {
 
     res
         .cookie('jwt', token)
-        .send({ message: 'User created succefully...!!!' });
+        .send({ message: 'User Logged succefully...!!!' });
 }
 
 module.exports = signIn;
