@@ -17,7 +17,7 @@ const signIn = async(req, res) => {
     if (!passwordMatch) throw new BadRequestError('Invalid credentials: password Incorrect');
 
     //store token as cookie
-    const token = createToken(user._id, user.name, user.email);
+    const token = createToken(user._id, user.name, user.email, user.type);
 
     res
         .cookie('jwt', token)

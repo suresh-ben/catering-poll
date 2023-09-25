@@ -1,8 +1,8 @@
 const CustomError = require('./custom-error');
 
-module.exports = class PollUnIdentifyError extends CustomError {
+module.exports = class RecipeNotFound extends CustomError {
     constructor(message) {
-        super(message || 'Poll not created yet!!');
+        super(message || 'recipe not found!!!');
         this.statusCode = 400;
     }
 

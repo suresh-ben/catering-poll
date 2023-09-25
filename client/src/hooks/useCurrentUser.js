@@ -18,6 +18,7 @@ function useCurrentUser() {
                 id: res.data.id,
                 name: res.data.name,
                 email: res.data.email,
+                type: res.data.type
             });
         } catch (err) {
             console.log(err);

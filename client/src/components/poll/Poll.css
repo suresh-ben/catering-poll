@@ -1,0 +1,88 @@
+.poll-body {
+    height: 100vh;
+    background-color: #172432;
+}
+
+.poll-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.poll-create-search {
+    display: flex;
+    width: 65%;
+    justify-content: space-between;
+}
+
+.poll-create {
+    padding: .3rem 2rem;
+    border-radius: 10px;
+    background-color: #0F1822;
+    border: none;
+    background-color: #8fc82c;
+    font-size: large;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poll-create:hover {
+    cursor: pointer;
+}
+
+.poll-search {
+    width: 25rem;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    padding: .25rem 1rem;
+    font-size: 1rem;
+}
+
+.poll-recipes {
+    margin-top: 1rem;
+    width: 65%;
+    height: 65vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.poll-recipes::-webkit-scrollbar {
+    display: none;
+}
+
+.poll-recipe {
+    margin: .5rem 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: .5rem 2rem;
+}
+
+.poll-recipe-name-votes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.poll-recipe-comment {
+    font-size: .75rem;
+}
+
+.poll-create-new {
+    position: fixed;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    height: 25rem;
+    width: 25rem;
+    z-index: 100;
+}
+
+.poll-create-new h1 {}

@@ -2,12 +2,13 @@ import axios from 'axios';
 
 function useSignUp() {
     axios.defaults.withCredentials = true;
-    const signUp = async(name, email, password) => {
+    const signUp = async(name, email, password, chefCode) => {
         try {
             const res = await axios.post(process.env.REACT_APP_API_ENDPOINT + 'api/users/signUp', {
                 name,
                 email,
-                password
+                password,
+                chefCode
             });
 
             return {

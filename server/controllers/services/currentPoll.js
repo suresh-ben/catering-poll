@@ -1,8 +1,8 @@
 const Poll = require('../../models/poll');
 
-const PollUnIdentifyError = require('../../middlewares/errors/poll-unidentified-error');
+const NoActivePollError = require('../../middlewares/errors/no-active-poll-error');
 
-const pollDetails = async(req, res) => {
+const currentPoll = async() => {
 
     const date = new Date();
     date.setHours(date.getHours() + 5);
@@ -11,13 +11,13 @@ const pollDetails = async(req, res) => {
 
     //find poll
     const poll = await Poll.findOne({ date: formattedDate });
-    if (!poll) throw new PollUnIdentifyError();
+    if (!poll || poll.expired) throw new NoActivePollError();
 
-    res.status(200).send({
+    return {
         id: poll._id,
         date: poll.date,
         expired: poll.expired
-    });
-}
+    };
+};
 
-module.exports = pollDetails;
+module.exports = currentPoll;

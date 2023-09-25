@@ -1,8 +1,8 @@
 const CustomError = require('./custom-error');
 
-module.exports = class PollUnIdentifyError extends CustomError {
+module.exports = class ChefOnlyError extends CustomError {
     constructor(message) {
-        super(message || 'Poll not created yet!!');
+        super(message || 'This operation is available only to chef');
         this.statusCode = 400;
     }
 

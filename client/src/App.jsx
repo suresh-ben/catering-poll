@@ -6,6 +6,7 @@ import { AuthContextProvider } from './contexts/AuthContext';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
+import Poll from './pages/poll';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={< Home />}/>
           <Route exact path='/auth' element={< Auth />}/>
+          <Route exact path='/poll' element={< Poll />}/>
 
           {/* Not found */}
           <Route path='*' element={ <Navigate to="/404" /> } />

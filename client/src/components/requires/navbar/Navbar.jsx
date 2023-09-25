@@ -5,6 +5,8 @@ import './Navbar.css';
 import useCurrentUser from '../../../hooks/useCurrentUser';
 import AuthContext from '../../../contexts/AuthContext';
 
+import { employee, chef } from '../../../assets/images';
+
 function Navbar() {
 
     const { user } = useCurrentUser();
@@ -12,6 +14,7 @@ function Navbar() {
 
     useEffect(()=>{
         setCurrentUser(user);
+        console.log(user)
     }, [user]);
 
     const SignOut = async () => {
@@ -32,6 +35,13 @@ function Navbar() {
         <nav className="nav-bar">
             <a className="nav-brand" href='/' style={{textDecoration: 'none'}}>Catering Poll</a>
             <div className="nav-user">
+                {user && user.success && user.type === 'chef' &&
+                    <img className='user-image' src={chef} alt="C" />
+                }
+                {user && user.success && user.type === 'employee' &&
+                    <img className='user-image' src={employee} alt="E" />
+                }
+
                 {user && user.success && <p className="nav-user-name">{user.name}</p>}
                 {
                     user && user.success ?

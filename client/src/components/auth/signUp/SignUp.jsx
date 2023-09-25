@@ -7,6 +7,8 @@ function SignUp() {
     const [ name, setName ] = useState(null);
     const [ email, setEmail ] = useState(null);
     const [ password, setPassword ] = useState(null);
+    const [ isChef, setIsChef ] = useState(false);
+    const [ chefCode, setChefCode ] = useState("");
     const [ error, setError ] = useState("");
     const { signUp } = useSignUp();
     const navigate = useNavigate();
@@ -29,10 +31,9 @@ function SignUp() {
           return;
         }
 
-        const response = await signUp(name, email, password);
+        const response = await signUp(name, email, password, chefCode);
         if(response.success) {
           console.log("Success");
-          //Todo -- divert to home
           navigate('/');
         } else {
           setError(response.err);
@@ -75,6 +76,29 @@ function SignUp() {
                 }}
                 placeholder="Password"
               />
+
+              <div style={{fontSize: '.75rem', display: 'flex', alignItems: 'center'}}>
+                <input type="checkbox" 
+                  style={{marginRight: '10px'}}
+                  onChange={(e) => {
+                    console.log(e.target.checked);
+                    setIsChef(e.target.checked);
+                  }}
+                  /> 
+                Are you a Chef?
+              </div>
+
+              {
+                isChef && 
+                <input
+                className="sign-input"
+                type="text"
+                onChange={(e) => {
+                  setChefCode(e.target.value);
+                }}
+                placeholder="Please Enter Chef CODE"
+              />
+              }
 
               <button className="sign-button" type="submit">Sign Up</button>
               <p style={{textAlign: 'center', color: 'red', fontSize: 'small'}}>{error}</p>

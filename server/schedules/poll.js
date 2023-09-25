@@ -1,15 +1,15 @@
 const schedule = require('node-schedule');
 const Poll = require('../models/poll');
 
-const pollStartTime = 7; //7 am
-const pollLifeTime = 2; //2 hrs
+const pollStartTime = 0; //5 pm
+const pollLifeTime = 5; //2 hrs
 
 const schedulePolls = async() => {
     //Poll creation Time rule
     let pollCreationRule = new schedule.RecurrenceRule();
     pollCreationRule.tz = 'Asia/Kolkata';
     pollCreationRule.second = 0;
-    pollCreationRule.minute = 0;
+    pollCreationRule.minute = 30;
     pollCreationRule.hour = pollStartTime;
 
     //poll deactivate time rule
@@ -23,9 +23,9 @@ const schedulePolls = async() => {
     schedule.scheduleJob(pollCreationRule, async() => {
 
         const date = new Date();
-        date.setUTCHours(date.getUTCHours() + 5);
-        date.setUTCMinutes(date.getUTCMinutes() + 30);
-        const formattedDate = `${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`;
+        date.setHours(date.getHours() + 5);
+        date.setMinutes(date.getMinutes() + 30);
+        const formattedDate = `${date.getUTCDate()} ${date.getUTCMonth()} ${date.getUTCFullYear()}`;
 
         //create poll
         await Poll.create({
@@ -39,9 +39,9 @@ const schedulePolls = async() => {
     // schedule - deactivate poll
     schedule.scheduleJob(pollDeactiveRule, async() => {
         const date = new Date();
-        date.setUTCHours(date.getUTCHours() + 5);
-        date.setUTCMinutes(date.getUTCMinutes() + 30);
-        const formattedDate = `${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`;
+        date.setHours(date.getHours() + 5);
+        date.setMinutes(date.getMinutes() + 30);
+        const formattedDate = `${date.getUTCDate()} ${date.getUTCMonth()} ${date.getUTCFullYear()}`;
 
         //find poll
         const poll = await Poll.findOne({ date: formattedDate });

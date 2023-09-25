@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Home.css'
 
 import Navbar from '../requires/navbar';
@@ -10,9 +11,9 @@ function Home() {
             <div className='home-main'>
                 <div>
                     <p className='home-main-tag'>Eat fresh <br /> <span>Food</span></p>
-                    <button>
+                    <Link className='home-main-button' to='/poll'>
                         Vote here
-                    </button>
+                    </Link>
                 </div>
 
                 <img src={dish} alt="Dish" />

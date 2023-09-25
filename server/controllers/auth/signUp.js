@@ -5,7 +5,7 @@ const PasswordManager = require('./services/password-manager');
 const createToken = require('./services/create-token');
 
 const signUp = async(req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, chefCode } = req.body;
 
     //validate request
     validateSignUp(name, email, password);
@@ -19,11 +19,12 @@ const signUp = async(req, res) => {
     const user = await User.create({
         name: name,
         email: email,
-        password: hashPassword
+        password: hashPassword,
+        type: chefCode === process.env.CHEF_CODE ? 'chef' : 'employee'
     });
 
     //store token as cookie
-    const token = createToken(user._id, user.name, user.email);
+    const token = createToken(user._id, user.name, user.email, user.type);
 
     res
         .cookie('jwt', token)

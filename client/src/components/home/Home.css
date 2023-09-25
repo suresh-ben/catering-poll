@@ -30,7 +30,7 @@
     color: #8fc82c;
 }
 
-.home-main button {
+.home-main-button {
     padding: 1rem;
     border-radius: 10px;
     background-color: #0F1822;
@@ -38,6 +38,10 @@
     color: #8fc82c;
     font-size: large;
     width: 50%;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .home-main button:hover {

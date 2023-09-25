@@ -9,6 +9,9 @@ require('express-async-errors');
 //import routes
 const auth = require('./routes/auth');
 const poll = require('./routes/poll');
+const recipe = require('./routes/reciepe');
+const vote = require('./routes/vote');
+const comment = require('./routes/comment');
 
 //inits
 const app = express();
@@ -25,6 +28,9 @@ app.use(cookieParser({
 //routes
 app.use(auth);
 app.use(poll);
+app.use(recipe);
+app.use(vote);
+app.use(comment);
 
 app.use(errorHandler);
 
