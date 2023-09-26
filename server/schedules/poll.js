@@ -1,7 +1,7 @@
 const schedule = require('node-schedule');
 const Poll = require('../models/poll');
 
-const pollStartTime = 11; //5 pm
+const pollStartTime = 11; //11 am
 const pollLifeTime = 5; //2 hrs
 
 const schedulePolls = async() => {
