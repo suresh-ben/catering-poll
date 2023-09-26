@@ -50,3 +50,15 @@
 }
 
 .home-main img {}
+
+@media (max-width: 870px) {
+    .home-main img {
+        display: none;
+    }
+    .home-main {
+        justify-content: center
+    }
+    .home-main-button {
+        background-color: rgba(0, 0, 0, 0.379);
+    }
+}

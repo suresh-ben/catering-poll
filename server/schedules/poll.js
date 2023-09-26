@@ -1,7 +1,7 @@
 const schedule = require('node-schedule');
 const Poll = require('../models/poll');
 
-const pollStartTime = 0; //5 pm
+const pollStartTime = 11; //5 pm
 const pollLifeTime = 5; //2 hrs
 
 const schedulePolls = async() => {
@@ -9,7 +9,7 @@ const schedulePolls = async() => {
     let pollCreationRule = new schedule.RecurrenceRule();
     pollCreationRule.tz = 'Asia/Kolkata';
     pollCreationRule.second = 0;
-    pollCreationRule.minute = 30;
+    pollCreationRule.minute = 0;
     pollCreationRule.hour = pollStartTime;
 
     //poll deactivate time rule

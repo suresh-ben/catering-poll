@@ -70,3 +70,9 @@
     background-color: #8fc82c;
     font-weight: bold;
 }
+
+@media (max-width: 870px) {
+    .user-sign {
+        width: 85%;
+    }
+}

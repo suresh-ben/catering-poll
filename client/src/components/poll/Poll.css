@@ -85,4 +85,30 @@
     z-index: 100;
 }
 
-.poll-create-new h1 {}
+.poll-expired {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+}
+
+.poll-expired-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25rem;
+    width: 25rem;
+}
+
+@media (max-width: 680px) {
+    .poll-expired-container {
+        width: 85vw;
+        height: 85vw;
+    }
+    .poll-expired-container img {
+        width: 100%;
+        height: 100% !important;
+    }
+}

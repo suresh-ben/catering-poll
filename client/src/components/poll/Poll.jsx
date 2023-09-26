@@ -2,15 +2,16 @@ import { useEffect, useState, useContext, useRef } from 'react';
 import './Poll.css';
 
 import Navbar from '../requires/navbar';
-
-import AuthContext from '../../contexts/AuthContext';
+import Recipe from './Recipe';
 
 import useCurrentPoll from '../../hooks/useCurrentPoll';
 import useRecipes from '../../hooks/useRecipes';
 import useVote from '../../hooks/useVote';
 import useCanVote from '../../hooks/useCanVote';
 import useCreateRecipe from '../../hooks/useCreateRecipe';
-import useComment from '../../hooks/useComment';
+import useTodaysRecipe from '../../hooks/useTodaysRecipe';
+
+import { cultry } from '../../assets/images'
 
 function Poll() {
 
@@ -19,6 +20,7 @@ function Poll() {
     const { makeVote } = useVote();
     const { canVote, setCanVote } = useCanVote();
     const { createNewRecipe } = useCreateRecipe();
+    const { topRecipe } = useTodaysRecipe();
     const [ selectedRecipe, setSelectedRecipe ] = useState(null);
     const [ error, setError] = useState("");
     const [ newRecipe, setNewRecipe ] = useState("");
@@ -34,7 +36,14 @@ function Poll() {
         return (
             <div className='poll-body'>
             <Navbar />
-                Pole Not Started yet... Please Wait!!!
+            <div className='poll-expired'>
+                <div className='poll-expired-container'>
+                    <div style={{backgroundColor: 'black', zIndex: '100', width: '100%', display: 'flex', padding: '.5rem 0', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                        <p style={{zIndex: '50', fontWeight: 'bold', fontSize: 'xx-large'}} >Poll not started Yet!!</p>
+                    </div>
+                    <img style={{position: 'absolute', height: '25rem', top: 0, left: 0}} src={cultry} alt="" />
+                    </div>
+                </div>
             </div>
         );
     }
@@ -43,7 +52,23 @@ function Poll() {
         return (
             <div className='poll-body'>
             <Navbar />
-                Poll has expired... 
+                <div className='poll-expired'>
+                <p style={{zIndex: '50', fontWeight: 'bold', fontSize: 'xx-large', margin: '3rem 0'}} >Poll has expired... </p>
+
+
+                    <div style={{position: 'relative', height: '25rem', width: '25rem', color: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <div style={{backgroundColor: 'black', zIndex: '100', width: '100%', display: 'flex', padding: '.5rem 0', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                        {
+                            topRecipe && 
+                            <>
+                                <p style={{zIndex: '50', fontWeight: 'bold', fontSize: 'xx-large'}} >Top dish</p>
+                                <p style={{ zIndex: '50', fontWeight: 'bold', fontSize: 'x-large'}}>{topRecipe.name}</p>
+                            </>
+                        }
+                        </div>
+                        <img style={{position: 'absolute', height: '25rem', top: 0, left: 0}} src={cultry} alt="" />
+                    </div>
+                </div>
             </div>
         );
     }
@@ -94,7 +119,7 @@ function Poll() {
                         <p style={{color: 'red', fontSize: '.9rem'}}>{newRecipeError}</p>
                     </div>
 
-                    <input className='poll-search' type="text" />
+                    {/* <input className='poll-search' type="text" /> */}
                 </div>
 
                 <div className='poll-recipes'>
@@ -137,73 +162,6 @@ function Poll() {
     );
 }
 
-function Recipe({item, selectedRecipe, setSelectedRecipe}) {
 
-    const [ hideComments, SetHideComments] = useState(true);
-    const [ comment, setComment ] = useState("");
-    const [ comments, setComments ] = useState([]);
-
-    const { currentUser } = useContext(AuthContext);
-    const { makeComment } = useComment();
-    const inputRef = useRef();
-
-    useEffect(()=>{
-        if(item)
-            setComments(item.comments);
-    }, [item]);
-
-
-    return (
-        <div className='poll-recipe' 
-            style={selectedRecipe?._id === item._id ? {borderColor: 'white', borderWidth: '1px', borderStyle: 'solid'} : {}}
-            onClick={() =>{
-                setSelectedRecipe(item);
-            }}
-        >
-            <div className='poll-recipe-name-votes'>
-                <p>{item.name}</p>
-                <p>Votes: {item.votes}</p>
-            </div>
-                <button style={{color: 'blue', backgroundColor: 'transparent', border: 0, marginLeft: '1rem', cursor: 'pointer'}}
-                    onClick={()=>{
-                        SetHideComments(!hideComments)
-                    }}
-                >Comments {`(${item.comments.length})`}</button>
-                {
-                    !hideComments && 
-                    <div>
-                        <ul style={{marginLeft: '2rem'}}>
-                        {
-                            comments.map((comment, k) => {
-                                return <li className='poll-recipe-comment' key={k}>{comment}</li>
-                            })
-                        }
-                        </ul>
-                        {
-                            currentUser && currentUser.type === 'chef' && 
-                            <>
-                                <input type="text" style={{color: 'black', fontSize: '.8rem', padding: '0 .25rem', margin: '0 .5rem'}} 
-                                    ref={inputRef}
-                                    onChange={(e) => {
-                                        setComment(e.target.value);
-                                    }}
-                                /> 
-                                <button
-                                    style={{color: 'black', padding: '0 .25rem' }}
-                                    onClick={async () => {
-                                        const res = await makeComment(item._id, comment);
-                                        if(res) {
-                                            setComments([...comments, comment]);
-                                            inputRef.current.value = "";
-                                        }
-                                    }}
-                                >Comment</button>
-                            </>
-                        }
-                    </div>
-                }
-        </div>
-    );
-}
 
 export default Poll;

@@ -44,3 +44,23 @@
     border-radius: 100%;
     padding: .25rem;
 }
+
+@media (max-width: 870px) {
+    .nav-button {
+        padding: .2rem 1rem;
+    }
+    .nav-user-name {
+        display: none;
+    }
+    .nav-bar {
+        font-size: .85rem;
+    }
+    .user-image {
+        height: 1.5rem;
+        padding: .2rem;
+        margin: 0 .5rem;
+    }
+    .nav-brand {
+        font-size: large;
+    }
+}
