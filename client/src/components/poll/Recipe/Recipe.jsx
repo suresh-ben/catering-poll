@@ -55,7 +55,7 @@ function Recipe({item, selectedRecipe, setSelectedRecipe}) {
                                     }}
                                 /> 
                                 <button
-                                    style={{color: 'black', padding: '0 .25rem' }}
+                                    style={{color: 'black', padding: '0 .25rem', margin: '0 .5rem'}}
                                     onClick={async () => {
                                         const res = await makeComment(item._id, comment);
                                         if(res) {
